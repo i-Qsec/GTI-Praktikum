@@ -76,22 +76,20 @@ begin
         process(sectrigger) is 
         begin
           if rising_edge(sectrigger) then
-            if (sectrigger = 1) then 
-              if (secs = 59) then 
-                secs <= 0;
-                if (mins = 59) then 
-                  mins <= 0;                  
-                  if(hours = 23)
+            if (secs = 59) then 
+              secs <= 0;
+              if (mins = 59) then 
+                mins <= 0;                  
+                if(hours = 23)
                   hours <= 0;
-                  else 
-                    hours <= hours + 1;
-                  end if;
-                else
-                  mins <= mins + 1;
+                else 
+                  hours <= hours + 1;
                 end if;
               else
-                secs <= secs + 1;
+                mins <= mins + 1;
               end if;
+            else
+              secs <= secs + 1;
             end if;
           end if;
         end process;

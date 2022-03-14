@@ -41,6 +41,6 @@ BEGIN
         s_bcd0 <= v_bcd0;
         s_bcd1 <= v_bcd1;
     END PROCESS;
-    o_ascii0 <= 011000+v_bcd0;
-    o_ascii1 <= 011000+v_bcd1;
+    o_ascii0 <= "0110000" + v_bcd0;
+    o_ascii1 <= "0110000" + v_bcd1;
 END ARCHITECTURE behavioral;
