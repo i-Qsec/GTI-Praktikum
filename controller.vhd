@@ -103,39 +103,50 @@ begin
         -- Zustand Time
         when NTIME =>
           -- TODO: Setze naechsten Zustand
-          if(btn_triggered(0) = '1'and btn_triggered(1) = '0') then
+          IF(btn_triggered(0) = "1" and btn_triggered(1) = "0") THEN
             next_state := SET_TIME;
-          elsif(btn_triggered(0) = '0' and btn_triggered(1) = '1') then
+          END IF;
+          IF(btn_triggered(0) = "0" and btn_triggered(1) = "1") THEN
             next_state := SET_ALARM;
-          end if;
+          END IF;
+            
 
         -- Zustand SetTime
         when SET_TIME =>
           -- TODO: Setze naechsten Zustand
-          if(btn_triggered(0) = '1' and btn_triggered(1) = '0') then
+          IF(btn_triggered(0) = "1" and btn_triggered(1) = "0") THEN
             next_state := NTIME;
-          end if;
+          END IF;
+          IF(btn_triggered(0) = "0" and btn_triggered(1) = "1") THEN
+            next_state := SET_ALARM;
+          END IF;
 
           -- TODO: Setze Minute und Stunde mit BTN(2) bzw. BTN(3)
-            if(btn_triggered(2) = '1') then
-              mins <= mins + 1;
-            elsif(btn_triggered(3) = '1') then
-              hours <= hours + 1;
-            end if;
+          IF(btn_triggered(2) = "1" and fasttrigger = "1") THEN
+            mins <= mins + "1";
+          END IF;
+          IF(btn_triggered(3) = "1" and fasttrigger = "1") THEN
+            hours <= hours + "1";
+          END IF;
+
 
         -- Zustand SetAlarm
         when SET_ALARM =>
           -- TODO: Setze naechsten Zustand
-          if(btn_triggered(0) = '0' and btn_triggered(1) = '1') then
+          IF(btn_triggered(0) = "1" and btn_triggered(1) = "0") THEN
+            next_state := SET_TIME;
+          END IF;
+          IF(btn_triggered(0) = "0" and btn_triggered(1) = "1") THEN
             next_state := NTIME;
-          end if;
+          END IF;
 
           -- TODO: Setze Minute und Stunde mit BTN(2) bzw. BTN(3)
-          if(btn_triggered(2) = '1') then
-            wmins <= wmins + 1;
-          elsif(btn_triggered(3) = '1') then
-            whours <= whours + 1;
-          end if;
+          IF(btn_triggered(2) = "1" and fasttrigger = "1") THEN
+            wmins <= wmins + "1";
+          END IF;
+          IF(btn_triggered(3) = "1" and fasttrigger = "1") THEN
+            whours <= whours + "1";
+          END IF;
 
           -- Illegale Zustaende
         when others =>
